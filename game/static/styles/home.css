@@ -1,0 +1,25 @@
+#home, #homeForm, #fgpwForm, #rspwForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#home * , #fgpw * , #rspw *{
+    margin: .5vh;
+}
+
+.modal-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-body * {
+    margin: .5vh;
+}
+
+.errorMsg{
+    text-align: center;
+}

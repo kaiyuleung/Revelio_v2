@@ -1,0 +1,19 @@
+/* #createGameModal .modal-content{
+    width: 10vw;
+} */
+
+.modal-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.modal-body * {
+    margin: .5vh;
+    /* width:  calc(var(--bs-modal-width) - 150px); */
+}
+
+.errorMsg{
+    text-align: center;
+}

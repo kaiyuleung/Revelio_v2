@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles/dashboard.css') }}">
+    <script defer src="{{ url_for('static', filename='/js/dashboard.js') }}" type="module"></script>
+{% endblock %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <section>
+        <div>
+            <button id="logout">Logout</button>
+        </div>
+        <div>
+            <div>
+                <img src="{{user.avatar_url}}" alt="avatar">
+                <h1>{{user.username}}</h1>
+            </div>
+            <div>
+                <h2>Stats</h2>
+                <p>Wins: {{user_stats['wins']}}</p>
+                <p>Win rate: {{user_stats['win_rate']}}%</p>
+                <p>Played: {{user_stats['games_played']}}</p>
+                <p>Best role: {{user_stats['best_role']}}</p>
+            </div>
+        </div>
+        <form action="/join_game" method="POST">
+            <input 
+                type="text" 
+                name="roomID" 
+                placeholder="Room ID">
+            <input type="submit" value="Join Game">
+        </form>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createGameModal">
+            Create Game
+        </button>
+    </section>
+
+    <div class="modal fade" id="createGameModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="createGameModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="createGameModalLabel">Create Game</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="createGameForm">
+
+                    <div class="modal-body">
+                        <select required name="map" id="map">
+                            <option disabled selected>Map</option>
+                            <option value="1">Map 1</option>
+                            <option value="2">Map 2</option>
+                        </select>
+                        <select required name="mode" id="mode">
+                            <option disabled selected>Mode</option>
+                            <option value="1">1 Hunter</option>
+                            <option value="2">2 Hunters</option>
+                        </select>
+                        <label for="roomSize">Room Size: 
+                            <input 
+                                id="roomSize"
+                                required
+                                type="number" 
+                                name="roomSize"
+                                min="2"
+                                value="2">
+                        </label>
+                    </div>
+                    <div class="modal-footer">
+                        <h6 id="errorMsg"></h6>
+                        <button type="Submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

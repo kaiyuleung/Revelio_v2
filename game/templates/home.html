@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles/home.css') }}">
+    <script defer src="{{ url_for('static', filename='/js/home.js') }}" type="module"></script>
+{% endblock %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <section id="home">
+        <h1>Login</h1>
+        <form id="homeForm" action="/login" method="POST">
+            <input 
+                required
+                type="text" 
+                name="username" 
+                placeholder="Username" 
+                autocomplete="section-blue username">
+            <input 
+                required
+                type="password" 
+                name="password" 
+                placeholder="Password" 
+                autocomplete="section-blue current-password">
+            <input type="submit" value="Login">
+        </form>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">
+            Register
+        </button>
+        <div>
+            <button id="fgpwBtn">Forgot Password</button>
+            <button id="rspwBtn">Reset Password</button>
+        </div>
+    </section>
+
+
+    <div class="modal fade" id="registerModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="registerModalLabel">Register</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="registerForm">
+                    <div class="modal-body">
+                        <input 
+                            required
+                            type="text" 
+                            name="username"
+                            placeholder="Username"
+                            autocomplete="section-red username">
+                        <input 
+                            required
+                            type="email" 
+                            name="email"
+                            placeholder="Email"
+                            autocomplete="section-red email">
+                        <input 
+                            required
+                            type="email" 
+                            name="confirm_email"
+                            placeholder="Confirm email"
+                            autocomplete="section-red email">
+                        <input 
+                            required
+                            type="password" 
+                            name="password"
+                            minlength="8"
+                            placeholder="Password (min 8 characters)"
+                            autocomplete="section-red new-password">
+                        <input 
+                            required
+                            type="password" 
+                            name="confirm_password"
+                            minlength="8"
+                            placeholder="Confirm password"
+                            autocomplete="section-red new-password">
+                    </div>
+                    <div class="modal-footer">
+                        <h6 id="errorMsg"></h6>
+                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                        <button type="Submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
